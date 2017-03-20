@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package api;
+
+import "ipam.proto";
+import "gogoproto/gogo.proto";
+
+service NetworkManager {
+  rpc AllocateIP(IPAMRequest) returns (IPAMResponse) {}
+  rpc ReleaseIP(IPReleaseRequest) returns (IPReleaseResponse) {}
+}

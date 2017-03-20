@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package api;
+
+import "gogoproto/gogo.proto";
+
+message IPAMRequest {
+  string container_id = 1 [(gogoproto.customname) = "ContainerID"];
+  string subnet = 2;
+}
+
+message IPConfig {
+  string version = 1;
+  string address = 2;
+  string gateway = 3;
+}
+
+message DNS {
+  repeated string nameservers = 1;
+  string domain = 2;
+  repeated string search = 3;
+  repeated string options = 4;
+}
+
+message IPAMResponse {
+  IPConfig ip = 1 [(gogoproto.customname) = "IP"];
+  DNS dns = 2 [(gogoproto.customname) = "DNS"];
+}
+
+message IPReleaseResponse {}
+
+message IPReleaseRequest {
+  string container_id = 1 [(gogoproto.customname) = "ContainerID"];
+  string address = 2;
+}
