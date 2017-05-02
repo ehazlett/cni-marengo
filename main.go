@@ -19,6 +19,7 @@ import (
 const (
 	defaultControlSocket = "unix:///var/run/marengo.sock"
 	marengoBridgeName    = "marengo"
+	defaultMTU           = 1450
 )
 
 type PluginConf struct {
@@ -77,7 +78,7 @@ func cmdAdd(args *skel.CmdArgs) error {
 		IP:   ip,
 		Mask: ipnet.Mask,
 	}
-	_, _, err = setupVeth(netns, br, args.IfName, ipn, 1500, conf.Hairpin)
+	_, _, err = setupVeth(netns, br, args.IfName, ipn, defaultMTU, conf.Hairpin)
 	if err != nil {
 		return err
 	}

@@ -75,10 +75,6 @@ func setupVeth(netns ns.NetNS, br *netlink.Bridge, ifName string, addr *net.IPNe
 		return nil, nil, fmt.Errorf("failed to connect %q to bridge %v: %v", hostVeth.Attrs().Name, br.Attrs().Name, err)
 	}
 
-	if err = netlink.LinkSetHairpin(hostVeth, hairpinMode); err != nil {
-		return nil, nil, fmt.Errorf("failed to setup hairpin mode for %v: %v", hostVeth.Attrs().Name, err)
-	}
-
 	return hostIface, contIface, nil
 }
 
